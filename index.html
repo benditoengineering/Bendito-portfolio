@@ -1,231 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bendito Engineering Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bendito Engineering Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+        }
 
-<style>
-    /* General styles */
-    html { scroll-behavior: smooth; }
-    body {
-        margin: 0;
-        font-family: 'Roboto', sans-serif;
-        background: #f0f2f5;
-        transition: background 0.3s, color 0.3s;
-    }
+        header {
+            background: #0b3d91;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
 
-    a { text-decoration: none; color: inherit; }
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
 
-    header {
-        background: #0b3d91;
-        padding: 40px 20px;
-        text-align: center;
-        color: white;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        animation: fadeInDown 1s;
-    }
+        .container {
+            max-width: 950px;
+            margin: 20px auto;
+            padding: 15px;
+        }
 
-    nav {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-top: 15px;
-        flex-wrap: wrap;
-    }
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-    nav a {
-        color: white;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
+        h2 {
+            margin-top: 0;
+            color: #0b3d91;
+        }
 
-    nav a:hover { color: #ffd700; }
+        ul {
+            line-height: 2;
+            font-size: 16px;
+        }
 
-    .profile-pic {
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid #fff;
-        margin-top: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        transition: transform 0.3s;
-        animation: fadeIn 2s;
-    }
+        /* Make About Me section 40% of view height */
+        .about {
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-    .profile-pic:hover { transform: scale(1.05); }
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
 
-    .container { max-width: 950px; margin: 20px auto; padding: 15px; }
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
 
-    .section {
-        background: white;
-        padding: 25px;
-        margin-bottom: 20px;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease-out;
-    }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #0b3d91;
+            color: white;
+            margin-top: 20px;
+        }
 
-    .section.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+        .contact a {
+            color: #0b3d91;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-    h2 { margin-top: 0; color: #0b3d91; }
-
-    ul {
-        line-height: 2;
-        font-size: 16px;
-        padding-left: 20px;
-    }
-
-    .service-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .service-item::before {
-        content: '✔';
-        color: #0b3d91;
-        font-weight: bold;
-    }
-
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 15px;
-    }
-
-    .gallery img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .gallery img:hover {
-        transform: scale(1.05) rotate(1deg);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    }
-
-    footer {
-        text-align: center;
-        padding: 20px;
-        background: #0b3d91;
-        color: white;
-        margin-top: 20px;
-    }
-
-    .whatsapp {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        background: #25d366;
-        color: white;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        font-size: 30px;
-        z-index: 1000;
-        transition: transform 0.3s;
-    }
-
-    .whatsapp:hover { transform: scale(1.1); }
-
-    .dark-mode-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #ffd700;
-        color: #0b3d91;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-        z-index: 1000;
-    }
-
-    body.dark {
-        background: #1c1c1c;
-        color: #f0f0f0;
-    }
-
-    body.dark .section {
-        background: #2c2c2c;
-        box-shadow: 0 2px 10px rgba(255,255,255,0.05);
-    }
-
-    body.dark header { background: #0b3d91; color: white; }
-    body.dark footer { background: #0b3d91; }
-
-    /* Animations */
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
+        .contact a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-<button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-
 <header>
     <h1>Bendito Engineering Consult</h1>
     <p>Professional Electrical & Solar Engineering Services</p>
-    <img src="images/Profile1.jpg" alt="Profile Photo" class="profile-pic">
+    <p><strong>RC Number:</strong> RC XXXXXXXX</p>
 
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <img src="images/Profile1.jpg" alt="Profile Photo" class="profile-pic">
 </header>
 
 <div class="container">
 
-    <div class="section" id="about">
+    <div class="section about">
         <h2>About Me</h2>
         <p>
-            I am an Electrical and Electronics Engineer providing professional services in solar installation,
-            CCTV setup, industrial electrical projects, inverter systems, and electrical maintenance.
-            I focus on delivering reliable, safe, and professional solutions for homes and businesses.
+            I am an Electrical and Electronics Engineer with years of experience delivering
+            high-quality electrical and solar engineering solutions. I specialize in solar installation,
+            CCTV system setup, inverter design, industrial electrical projects, and technical troubleshooting.
+            I focus on providing safe, reliable, and efficient services for both residential and commercial clients.
+            My work is driven by professionalism, precision, and customer satisfaction.
         </p>
     </div>
 
-    <div class="section" id="services">
+    <div class="section">
         <h2>Services</h2>
         <ul>
-            <li class="service-item">Solar installation & maintenance</li>
-            <li class="service-item">CCTV installation</li>
-            <li class="service-item">Industrial electrical services</li>
-            <li class="service-item">Inverter installation</li>
-            <li class="service-item">Electrical wiring & troubleshooting</li>
+            <li>✔ Solar installation & maintenance</li>
+            <li>✔ CCTV installation</li>
+            <li>✔ Industrial electrical services</li>
+            <li>✔ Inverter installation</li>
+            <li>✔ Electrical wiring & troubleshooting</li>
         </ul>
     </div>
 
-    <div class="section" id="gallery">
+    <div class="section">
         <h2>Project Gallery</h2>
         <div class="gallery">
             <img src="images/IMG-20250517-WA0001.jpg" alt="Project Photo 1">
@@ -239,10 +145,15 @@
         </div>
     </div>
 
-    <div class="section" id="contact">
+    <div class="section contact">
         <h2>Contact</h2>
         <p><strong>Phone:</strong> 07035761443</p>
-        <p><strong>Facebook:</strong> Bendito Engineering Consult</p>
+        <p>
+            <strong>Facebook:</strong>
+            <a href="https://facebook.com/BenditoEngineeringConsult" target="_blank">
+                Bendito Engineering Consult
+            </a>
+        </p>
     </div>
 
 </div>
@@ -250,27 +161,6 @@
 <footer>
     © 2025 Bendito Engineering Consult — All Rights Reserved
 </footer>
-
-<a href="https://wa.me/2347035761443" class="whatsapp" target="_blank">💬</a>
-
-<script>
-    // Dark mode toggle
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark');
-    }
-
-    // Animate sections on scroll
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting){
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.2 });
-
-    sections.forEach(section => observer.observe(section));
-</script>
 
 </body>
 </html>
