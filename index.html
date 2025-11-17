@@ -1,5 +1,24 @@
 <!DOCTYPE html><html lang="en">
-<head>
+<head>/* Floating Calculator Button */
+.floating-calculator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffcc00;
+    color: #222;
+    font-size: 30px;
+    padding: 18px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+    z-index: 9999;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.floating-calculator:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 204, 0, 0.9);
+}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bendito Engineering Portfolio</title><style>
