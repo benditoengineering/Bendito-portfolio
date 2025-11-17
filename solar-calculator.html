@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar Savings Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      padding: 20px;
+    }
+    .card {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #008cff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result-box {
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Solar Savings Calculator</h1>  <div class="card">
+    <label>Monthly Bill (₦)</label>
+    <input id="bill" type="number" placeholder="e.g. 120000" /><label>Tariff (₦/kWh)</label>
+<input id="tariff" type="number" placeholder="e.g. 90" />
+
+<label>System Size (kW)</label>
+<input id="size" type="number" placeholder="e.g. 5" />
+
+<label>Production Factor (kWh/kW/day)</label>
+<input id="prod" type="number" placeholder="e.g. 4.8" />
+
+<label>Cost per kW (₦)</label>
+<input id="cost" type="number" placeholder="e.g. 700000" />
+
+<button onclick="calculate()">Calculate Savings</button>
+
+  </div>  <div id="results" class="card" style="display:none;">
+    <h2>Results</h2>
+    <div class="result-box" id="annual"></div>
+    <div class="result-box" id="savings"></div>
+    <div class="result-box" id="payback"></div>
+  </div>  <script>
+    function calculate() {
+      const bill = Number(document.getElementById('bill').value);
+      const tariff = Number(document.getElementById('tariff').value);
+      const size = Number(document.getElementById('size').value);
+      const pf = Number(document.getElementById('prod').value);
+      const cost = Number(document.getElementById('cost').value);
+
+      const annualProduction = size * pf * 365;
+      const firstYearSavings = annualProduction * 0.6 * tariff;
+      const systemCost = size * cost;
+      const payback = systemCost / firstYearSavings;
+
+      document.getElementById('annual').innerHTML = "Annual Production: <b>" + annualProduction.toLocaleString() + " kWh</b>";
+      document.getElementById('savings').innerHTML = "Estimated First-Year Savings: <b>₦" + firstYearSavings.toLocaleString() + "</b>";
+      document.getElementById('payback').innerHTML = "Simple Payback: <b>" + payback.toFixed(1) + " years</b>";
+
+      document.getElementById('results').style.display = 'block';
+    }
+  </script></body>
+</html>
