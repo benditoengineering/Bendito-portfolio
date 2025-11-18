@@ -44,7 +44,7 @@ body.dark .calc-box { background:#222; color:#fff; }
 .calc-box input, .calc-box select { width:100%; padding:8px; margin:6px 0 12px; border-radius:6px; border:1px solid #ccc; }
 .calc-box button { width:100%; padding:12px; border:none; border-radius:8px; background:#0b3d91; color:white; cursor:pointer; font-size:16px; margin-bottom:10px; }
 .calc-box button:hover { opacity:0.9; }
-#result { margin-top:15px; }
+#loadResult, #solarResult { margin-top:15px; }
 
 /* Dark Mode Button */
 .theme-toggle { position:fixed; top:20px; left:20px; background:#0b3d91; color:#fff; padding:12px 18px; border-radius:40px; cursor:pointer; font-size:14px; box-shadow:0 3px 8px rgba(0,0,0,0.3); z-index:999; }
@@ -137,6 +137,8 @@ footer { text-align:center; padding:15px; background:#0b3d91; color:white; margi
 <option value="1400">1.5 HP (1400W)</option>
 <option value="1800">2 HP (1800W)</option>
 </select>
+<label>Quantity:</label>
+<input type="number" id="acQty" value="0" min="0">
 <button onclick="calculateLoad()">Calculate</button>
 <div id="loadResult"></div>
 </div>
@@ -168,7 +170,7 @@ footer { text-align:center; padding:15px; background:#0b3d91; color:white; margi
 
 <script>
 // DARK MODE
-function toggleTheme() { document.body.classList.toggle('dark'); }
+function toggleTheme(){ document.body.classList.toggle('dark'); }
 
 // Load Calculator Modal
 function openLoad(){ document.getElementById("loadModal").style.display="block"; }
@@ -178,7 +180,9 @@ let bulbs=document.getElementById("bulbs").value*10;
 let fans=document.getElementById("fans").value*70;
 let tv=document.getElementById("tv").value*100;
 let fridge=document.getElementById("fridge").value*150;
-let ac=Number(document.getElementById("ac").value);
+let acHP=Number(document.getElementById("ac").value);
+let acQty=Number(document.getElementById("acQty").value);
+let ac=acHP*acQty;
 let total=bulbs+fans+tv+fridge+ac;
 let inverter="";
 if(total<=800) inverter="1kVA / 12V";
@@ -199,34 +203,20 @@ let batV=Number(document.getElementById("batVolt").value);
 let batT=document.getElementById("batType").value;
 let panelW=Number(document.getElementById("panelW").value);
 let sunH=Number(document.getElementById("sunH").value);
-
 if(!load){ alert("Enter total load"); return; }
-
-// Total daily energy
 let dailyWh=load*hours;
-
-// Inverter sizing
 let inverterVA=Math.ceil(load/0.8);
 let inverterKVA=(inverterVA/1000).toFixed(2);
-
-// Battery sizing
 let batteryAh;
 if(batT=="tubular") batteryAh=Math.ceil(dailyWh/(batV*0.5));
 else batteryAh=Math.ceil(dailyWh/(batV*0.9));
-
-// Solar panel sizing
 let totalSolarW=Math.ceil(dailyWh/sunH);
 let panels=Math.ceil(totalSolarW/panelW);
-
-// Charge controller (20% safety margin)
 let ccAmps=Math.ceil((totalSolarW*1.2)/batV);
-
-// Estimated cost (example: inverter $250/kVA, battery $150/Ah, panel $0.5/W)
 let costInverter=250*inverterKVA;
 let costBattery=150*batteryAh;
 let costPanels=0.5*totalSolarW;
 let totalCost=costInverter+costBattery+costPanels;
-
 document.getElementById("solarResult").innerHTML=`
 <h3>Solar System Results</h3>
 <p><strong>Daily Energy Consumption:</strong> ${dailyWh} Wh/day (${(dailyWh/1000).toFixed(2)} kWh/day)</p>
@@ -234,8 +224,7 @@ document.getElementById("solarResult").innerHTML=`
 <p><strong>Battery Size:</strong> ${batteryAh} Ah / ${batV}V (${batT})</p>
 <p><strong>Solar Panels:</strong> ${totalSolarW} W → ${panels} panels (${panelW} W each)</p>
 <p><strong>Charge Controller:</strong> ${ccAmps} A</p>
-<p><strong>Estimated System Cost:</strong> $${totalCost.toLocaleString()}</p>
-`;
+<p><strong>Estimated System Cost:</strong> $${totalCost.toLocaleString()}</p>`;
 }
 </script>
 
