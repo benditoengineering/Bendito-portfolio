@@ -1,9 +1,14 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bendito Engineering Portfolio</title><style>
+<title>Bendito Engineering Portfolio</title>
+
+<style>
 body { margin:0; font-family: Arial, sans-serif; background:#f0f2f5; color:#333; transition:0.3s; }
+
+/* DARK MODE */
 body.dark { background:#0e0e0e; color:#ddd; }
 body.dark .section { background:#1a1a1a; color:#eee; }
 body.dark nav { background:#111; }
@@ -11,6 +16,7 @@ body.dark nav a { color:#4c9aff; }
 body.dark header { background:#051f40; }
 body.dark footer { background:#111; }
 
+/* Header, Nav, Footer */
 header { background:#0b3d91; padding:40px 20px; text-align:center; color:white; }
 nav { background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.1); position:sticky; top:0; z-index:1000; display:flex; justify-content:center; padding:10px; }
 nav a { margin:0 15px; text-decoration:none; color:#0b3d91; font-weight:bold; }
@@ -19,14 +25,17 @@ nav a:hover { text-decoration:underline; }
 .container { max-width:950px; margin:20px auto; padding:15px; }
 .section { background:white; padding:25px; margin-bottom:20px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
 
+/* Gallery */
 .gallery { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:15px; }
 .gallery img { width:100%; height:150px; object-fit:cover; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
 
-.whatsapp { position:fixed; bottom:20px; right:20px; background:#25d366; color:white; padding:15px 20px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:999; display:flex; align-items:center; gap:10px; }
+/* Floating Buttons */
+.whatsapp { position:fixed; bottom:20px; right:20px; background:#25d366; color:white; padding:15px 20px; border-radius:50px; text-decoration:none; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:999; }
 .load-btn, .solar-btn { position:fixed; right:20px; padding:15px 25px; border-radius:50px; color:white; font-weight:bold; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:9999; }
 .load-btn { bottom:80px; background:#ff9800; }
 .solar-btn { bottom:140px; background:#0b3d91; }
 
+/* Calculator Modals */
 .calc-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10000; }
 .calc-box { background:white; width:90%; max-width:450px; margin:8% auto; padding:25px; border-radius:12px; overflow-y:auto; max-height:85%; }
 body.dark .calc-box { background:#222; color:#fff; }
@@ -37,43 +46,49 @@ body.dark .calc-box { background:#222; color:#fff; }
 .calc-box button:hover { opacity:0.9; }
 #loadResult, #solarResult { margin-top:15px; }
 
+/* Dark Mode Button */
 .theme-toggle { position:fixed; top:20px; left:20px; background:#0b3d91; color:#fff; padding:12px 18px; border-radius:40px; cursor:pointer; font-size:14px; box-shadow:0 3px 8px rgba(0,0,0,0.3); z-index:999; }
 
 footer { text-align:center; padding:15px; background:#0b3d91; color:white; margin-top:20px; }
+</style>
+</head>
+<body>
 
-/* SOCIAL ICONS */
-.social-links a { display:flex; align-items:center; gap:8px; margin:5px 0; text-decoration:none; color:#0b3d91; font-weight:bold; }
-.social-links img { width:20px; height:20px; }
+<!-- Dark Mode Button -->
+<div class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</div>
 
-/* SMALL FLOATING SOCIAL ICONS */
-.social-icons-fixed { position:fixed; bottom:20px; left:20px; display:flex; flex-direction:column; gap:12px; z-index:9999; }
-.social-icons-fixed img { width:35px; height:35px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.3); }
-
-</style></head>
-<body><div class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</div><header>
+<header>
 <h1>Bendito Engineering Consult</h1>
 <p>Professional Electrical & Solar Engineering Services</p>
-<p><strong>RC 3832347</strong></p>
+<p><strong>RC Number:</strong> RC 3832347</p>
 <img src="images/Profile1.jpg" alt="Profile Photo" class="profile-pic">
-</header><nav>
+</header>
+
+<nav>
 <a href="#about">About</a>
 <a href="#services">Services</a>
 <a href="#gallery">Gallery</a>
 <a href="#contact">Contact</a>
-</nav><div class="container">
+</nav>
+
+<div class="container">
 <div class="section" id="about">
-<h2>About Us</h2>
-<p>We are Electrical and Electronics Engineers specializing in solar installations, inverter systems, industrial electrical projects, and technical troubleshooting.</p>
-</div><div class="section" id="services">
+<h2>About Me</h2>
+<p>I am an Electrical and Electronics Engineer specializing in solar installation, inverter design, industrial electrical projects, and technical troubleshooting.</p>
+</div>
+
+<div class="section" id="services">
 <h2>Services</h2>
 <ul>
-<li>✔ Solar installations & maintenance</li>
-<li>✔ CCTV installations</li>
+<li>✔ Solar installation & maintenance</li>
+<li>✔ CCTV installation</li>
 <li>✔ Industrial electrical services</li>
-<li>✔ Inverter installations</li>
+<li>✔ Inverter installation</li>
 <li>✔ Electrical wiring & troubleshooting</li>
 </ul>
-</div><div class="section" id="gallery">
+</div>
+
+<div class="section" id="gallery">
 <h2>Project Gallery</h2>
 <div class="gallery">
 <img src="images/IMG-20250517-WA0001.jpg">
@@ -85,18 +100,28 @@ footer { text-align:center; padding:15px; background:#0b3d91; color:white; margi
 <img src="images/IMG-20251018-WA0004.jpg">
 <img src="images/IMG-20251018-WA0005.jpg">
 </div>
-</div><div class="section" id="contact">
+</div>
+
+<div class="section" id="contact">
 <h2>Contact</h2>
 <p><strong>Phone:</strong> 07035761443</p>
 <p><strong>Email:</strong> benditoengineering@gmail.com</p>
-<div class="social-icons-fixed">
-<a href="https://facebook.com/BenditoEngineeringConsult" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
-<a href="https://wa.me/2347035761443" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
+<div class="social-links">
+<p><strong>Social Links:</strong></p>
+<a href="https://facebook.com/BenditoEngineeringConsult" target="_blank">Facebook</a>
+<a href="https://wa.me/2347035761443" target="_blank">WhatsApp</a>
+<a href="mailto:benditoengineering@gmail.com">Email</a>
 </div>
 </div>
-</div><div class="load-btn" onclick="openLoad()">Load Calculator</div>
+</div>
+
+<!-- Floating Buttons -->
+<div class="load-btn" onclick="openLoad()">Load Calculator</div>
 <div class="solar-btn" onclick="openSolar()">Solar Calculator</div>
-<a class="whatsapp" href="https://wa.me/2347035761443" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">Chat</a><div id="loadModal" class="calc-modal">
+<a class="whatsapp" href="https://wa.me/2347035761443" target="_blank">Chat on WhatsApp</a>
+
+<!-- Load Calculator Modal -->
+<div id="loadModal" class="calc-modal">
 <div class="calc-box">
 <span class="close-calc" onclick="closeLoad()">&times;</span>
 <h2>Load Calculator</h2>
@@ -117,7 +142,10 @@ footer { text-align:center; padding:15px; background:#0b3d91; color:white; margi
 <button onclick="calculateLoad()">Calculate</button>
 <div id="loadResult"></div>
 </div>
-</div><div id="solarModal" class="calc-modal">
+</div>
+
+<!-- Solar Calculator Modal -->
+<div id="solarModal" class="calc-modal">
 <div class="calc-box">
 <span class="close-calc" onclick="closeSolar()">&times;</span>
 <h2>Solar System Calculator</h2>
@@ -136,9 +164,15 @@ footer { text-align:center; padding:15px; background:#0b3d91; color:white; margi
 <button onclick="calculateSolar()">Calculate Solar System</button>
 <div id="solarResult"></div>
 </div>
-</div><footer>© 2025 Bendito Engineering Consult — All Rights Reserved</footer><script>
+</div>
+
+<footer>© 2025 Bendito Engineering Consult — All Rights Reserved</footer>
+
+<script>
+// DARK MODE
 function toggleTheme(){ document.body.classList.toggle('dark'); }
 
+// Load Calculator Modal
 function openLoad(){ document.getElementById("loadModal").style.display="block"; }
 function closeLoad(){ document.getElementById("loadModal").style.display="none"; }
 function calculateLoad(){
@@ -159,6 +193,7 @@ else inverter="5kVA / 48V or higher";
 document.getElementById("loadResult").innerHTML=`<h3>Total Load: ${total} W</h3><p><strong>Recommended Inverter:</strong> ${inverter}</p>`;
 }
 
+// Solar Calculator Modal
 function openSolar(){ document.getElementById("solarModal").style.display="block"; }
 function closeSolar(){ document.getElementById("solarModal").style.display="none"; }
 function calculateSolar(){
@@ -178,13 +213,19 @@ else batteryAh=Math.ceil(dailyWh/(batV*0.9));
 let totalSolarW=Math.ceil(dailyWh/sunH);
 let panels=Math.ceil(totalSolarW/panelW);
 let ccAmps=Math.ceil((totalSolarW*1.2)/batV);
+let costInverter=250*inverterKVA;
+let costBattery=150*batteryAh;
+let costPanels=0.5*totalSolarW;
+let totalCost=costInverter+costBattery+costPanels;
 document.getElementById("solarResult").innerHTML=`
-<h3>Solar System Results</h3>
 <p><strong>Daily Energy Consumption:</strong> ${dailyWh} Wh/day (${(dailyWh/1000).toFixed(2)} kWh/day)</p>
 <p><strong>Inverter Size:</strong> ${inverterKVA} kVA</p>
 <p><strong>Battery Size:</strong> ${batteryAh} Ah / ${batV}V (${batT})</p>
 <p><strong>Solar Panels:</strong> ${totalSolarW} W → ${panels} panels (${panelW} W each)</p>
-<p><strong>Charge Controller:</strong> ${ccAmps} A</p>`;
+<p><strong>Charge Controller:</strong> ${ccAmps} A</p>
+<p><strong>Estimated System Cost:</strong> $${totalCost.toLocaleString()}</p>`;
 }
-</script></body>
-</html>
+</script>
+
+</body>
+  </html>
